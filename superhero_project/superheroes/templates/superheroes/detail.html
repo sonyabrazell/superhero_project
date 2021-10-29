@@ -8,14 +8,18 @@
 </head>
 <body>
     <ul>
-        <li> <h2> {{hero.name}}</h2>
-        <li> <h2> {{hero.alter_ego}}</h2>
-        <li> <h2> {{hero.primary_ability}}</h2>
-        <li> <h2> {{hero.secondary_ability}}</h2>
-        <li> <h2> {{hero.catch_phrase}}</h2>
-        <a href = "{% url 'superheroes:edit' hero_id %}">Edit</a> 
-        <a href = "{% url 'superheroes:delete' hero_id %}">Delete</a></li>
+        {% for detail in single_hero %}
+        <li> <h2> {{single_hero.name}}</h2></li>
+        <li> <h2> {{single_hero.alter_ego}}</h2></li>
+        <li> <h2> {{single_hero.primary_ability}}</h2></li>
+        <li> <h2> {{single_hero.secondary_ability}}</h2></li>
+        <li> <h2> {{single_hero.catch_phrase}}</h2></li>
+        {% endfor %}
+      
+        <a href = "{% url 'superheroes:edit' single_hero.hero_id %}">Edit All Fields</a> 
+        <a href = "{% url 'superheroes:delete' single_hero.hero_id %}">Delete All Fields</a></li>
         
+        <a href = "{% url 'superheroes:detail' all_heroes.hero_id %}">See All Hero Details </a>
     </ul>
 </body>
 </html>
