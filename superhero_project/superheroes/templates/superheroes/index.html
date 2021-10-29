@@ -10,7 +10,7 @@
     <h1>List of Heroes</h1>
     <ul>
         {% for hero in all_heroes %}
-        <li> <h2> {{hero.name}} <a href = "{% url 'superheroes:detail' hero.id %}">Click for details</h2> </li>
+        <li> <h2> {{hero.name}} <a href = "{% url 'superheroes:detail' hero.id %}"></h2>Click for details</a></li>
         {% endfor %}
     </ul>
     <a href ="{% url 'superheroes:create' %}">Add New Hero</a>

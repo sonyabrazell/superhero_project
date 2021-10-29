@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from .models import Superhero
@@ -31,3 +31,29 @@ def create(request):
         return HttpResponseRedirect(reverse('superheroes:index'))
     else:
         return render(request, 'superheroes/create.html')
+
+def edit(request, hero_id):
+    single_hero = Superhero.objects.get(pk=hero_id)
+    if request.method == "POST":
+        single_hero.name = request.POST.get('name')
+        single_hero.alter_ego = request.POST.get('alter_ego')
+        single_hero.primary = request.POST.get('primary')
+        single_hero.secondary = request.POST.get('secondary')
+        single_hero.catchphrase = request.POST.get('catchphrase')
+        single_hero.save()
+        return HttpResponseRedirect('superheroes:index')
+    else:
+        return render(request, 'superheroes/edit.html')
+
+def delete(request, hero_id):
+    single_hero = Superhero.objects.get(pk=hero_id)
+    if request.method == "POST":
+        single_hero.name = request.POST.get('name')
+        single_hero.alter_ego = request.POST.get('alter_ego')
+        single_hero.primary = request.POST.get('primary')
+        single_hero.secondary = request.POST.get('secondary')
+        single_hero.catchphrase = request.POST.get('catchphrase')
+        single_hero.delete(request,hero_id)
+        return HttpResponseRedirect('superheroes:index')
+    else:
+        return render(request, 'superheroes/delete.html')
